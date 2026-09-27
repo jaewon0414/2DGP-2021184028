@@ -1,3 +1,6 @@
+from pico2d import *
+
+open_canvas()
 def move_circle():
     print('circle')
     pass
@@ -15,3 +18,5 @@ while True:
     move_rectangle()
     move_triangle()
     pass
+
+close_canvas()
