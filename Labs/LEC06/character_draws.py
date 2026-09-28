@@ -26,4 +26,5 @@ while True:
     move_triangle()
     break
 
+delay(2)
 close_canvas()
