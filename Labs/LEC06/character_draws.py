@@ -27,6 +27,8 @@ def move_circle():
 
 def move_top():
     print('top')
+    for x in range(50,751,5):
+        draw_boy(x,550)
 
 def move_right():
     print('right')
