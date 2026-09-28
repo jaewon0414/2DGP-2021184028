@@ -94,9 +94,6 @@ def move_triangle():
     move_c_to_a()
     pass
 
-clear_canvas()
-character.draw(400,300)
-update_canvas()
 
 while True:
     move_circle()
