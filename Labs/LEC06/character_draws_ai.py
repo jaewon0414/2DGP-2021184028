@@ -1,8 +1,12 @@
 # LEC06 점진적 개발 실습 (AI 활용)
 # 캐릭터가 원운동 → 사각 운동 → 삼각 운동을 차례로 한 바퀴씩 이동하고, 이를 무한 반복한다.
 from pico2d import *
+import math
 
 CANVAS_WIDTH, CANVAS_HEIGHT = 800, 600
+
+CENTER_X, CENTER_Y = 400, 300   # 원운동 중심
+RADIUS = 200                    # 원운동 반지름
 
 
 def draw_boy(x, y):
@@ -15,9 +19,13 @@ def draw_boy(x, y):
 
 
 def move_circle():
+    # 중심 (400, 300), 반지름 200인 원을 반시계 방향으로 한 바퀴 돈다
     print('circle')
-    draw_boy(400, 300)
-    delay(1)
+    for degree in range(0, 360):
+        theta = math.radians(degree)
+        x = CENTER_X + RADIUS * math.cos(theta)
+        y = CENTER_Y + RADIUS * math.sin(theta)
+        draw_boy(x, y)
 
 
 def move_rectangle():
