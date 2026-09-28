@@ -78,6 +78,14 @@ def move_b_to_c():
 
 def move_c_to_a():
     print('c to a')
+    x0,y0=400,500
+    x1,y1=100,100   
+    n=100
+    for step in range(n+1):
+        t=step/n
+        x=x0+(x1-x0)*t
+        y=y0+(y1-y0)*t
+        draw_boy(x,y)
 
 def move_triangle():
     print('triangle')
@@ -91,8 +99,8 @@ character.draw(400,300)
 update_canvas()
 
 while True:
-   # move_circle()
-   # move_rectangle()
+    move_circle()
+    move_rectangle()
     move_triangle()
     break
 
