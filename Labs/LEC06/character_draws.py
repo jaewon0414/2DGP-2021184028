@@ -24,7 +24,6 @@ def move_circle():
         y=CENTER_Y+RADIUS*math.sin(theta)
 
         draw_boy(x,y)
-    pass
 
 def move_top():
     print('top')
@@ -52,7 +51,6 @@ def move_rectangle():
     move_right()
     move_bottom()
     move_left()
-    pass
 
 def move_a_to_b():
     print('a to b')
