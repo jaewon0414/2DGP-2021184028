@@ -9,6 +9,7 @@ open_canvas(800,600)
 character = load_image('character.png')
 
 def draw_boy(x,y):
+    get_events()
     clear_canvas()
     character.draw(x,y)
     update_canvas()
@@ -32,6 +33,8 @@ def move_top():
 
 def move_right():
     print('right')
+    for y in range(550,49,-5):
+        draw_boy(750,y)
 
 def move_bottom():
     print('bottom')
