@@ -21,7 +21,7 @@ def draw_boy(x,y):
 def move_circle():
      # 중심 (400, 300), 반지름 200인 원을 반시계 방향으로 한 바퀴 돈다
     print('circle')
-    for degree in range(360):
+    for degree in range(0,360,2):
         theta = math.radians(degree)
         x=CENTER_X+RADIUS*math.cos(theta)
         y=CENTER_Y+RADIUS*math.sin(theta)
