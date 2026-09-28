@@ -54,8 +54,20 @@ def move_rectangle():
     move_left()
     pass
 
+def move_a_to_b():
+    print('a to b')
+
+def move_b_to_c():
+    print('b to c')
+
+def move_c_to_a():
+    print('c to a')
+
 def move_triangle():
     print('triangle')
+    move_a_to_b()
+    move_b_to_c()
+    move_c_to_a()
     pass
 
 clear_canvas()
