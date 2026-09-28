@@ -8,6 +8,13 @@ open_canvas(800,600)
 
 character = load_image('character.png')
 
+def draw_boy(x,y):
+    clear_canvas()
+    character.draw(x,y)
+    update_canvas()
+    delay(0.01)
+
+
 def move_circle():
     print('circle')
     for degree in range(360):
@@ -15,10 +22,7 @@ def move_circle():
         x=CENTER_X+RADIUS*math.cos(theta)
         y=CENTER_Y+RADIUS*math.sin(theta)
 
-        clear_canvas()
-        character.draw(x,y)
-        update_canvas()
-        delay(0.01)
+        draw_boy(x,y)
     pass
 
 def move_top():
