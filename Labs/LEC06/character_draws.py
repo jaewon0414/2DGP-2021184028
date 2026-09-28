@@ -52,16 +52,17 @@ def move_rectangle():
     move_bottom()
     move_left()
 
-def move_a_to_b():
-    print('a to b')
-    x0, y0=100,100
-    x1, y1=700,100
+def move_line(x0,y0,x1,y1):
     n=100
     for step in range(n+1):
         t=step/n
         x=x0+(x1-x0)*t
         y=y0+(y1-y0)*t
         draw_boy(x,y)
+
+def move_a_to_b():
+    print('a to b')
+    move_line(100,100,700,100)
 
 def move_b_to_c():
     print('b to c')
