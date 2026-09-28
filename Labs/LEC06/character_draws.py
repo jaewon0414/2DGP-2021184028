@@ -1,3 +1,4 @@
+#LEF06 점진적 개발 실습
 from pico2d import *
 import math
 CENTER_X=400
