@@ -1,4 +1,5 @@
 from pico2d import *
+import math
 
 open_canvas(800,600)
 
@@ -6,6 +7,11 @@ character = load_image('character.png')
 
 def move_circle():
     print('circle')
+    for degree in range(0,360,90):
+        theta = math.radians(degree)
+        x=400+200*math.cos(theta)
+        y=300+200*math.sin(theta)
+        print(degree,round(x),round(y))
     pass
 
 def move_rectangle():
