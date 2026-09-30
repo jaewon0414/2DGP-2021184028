@@ -83,6 +83,7 @@ hero = load_image('hero_sheet.png')
 running = True
 action = 0
 frame = 0
+loop = 0
 
 while running:
     handle_events()
@@ -99,6 +100,14 @@ while running:
 
     # action마다 프레임 수가 다르므로 현재 action의 프레임 수로 순환
     frame = (frame + 1) % len(SPRITE[action])
+
+    # 한 바퀴를 다 돌면 반복 횟수 증가, 5회 반복하면 다음 action으로 (마지막 다음은 처음으로)
+    if frame == 0:
+        loop += 1
+        if loop == 5:
+            loop = 0
+            action = (action + 1) % len(SPRITE)
+
     delay(0.1)
 
 close_canvas()
