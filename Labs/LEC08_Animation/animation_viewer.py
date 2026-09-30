@@ -56,6 +56,7 @@ ATTACK = (
 
 # Sprite -> Action들의 tuple -> Frame들의 tuple
 SPRITE = (IDLE, WALK, RUN, JUMP, ATTACK)
+ACTION_NAMES = ('Idle', 'Walk', 'Run', 'Jump', 'Attack')
 
 # action별 프레임 시간(초) - 동작 성격에 맞게 자연스러운 속도로 조절
 #   Idle: 느린 호흡 / Walk: 보통 걸음 / Run: 빠른 발놀림 / Jump: 체공감 / Attack: 빠르고 날카롭게
@@ -93,6 +94,9 @@ loop = 0
 
 while running:
     handle_events()
+
+    if frame == 0 and loop == 0:  # 새 action 시작
+        print(f'[{ACTION_NAMES[action]}] {len(SPRITE[action])}프레임 x 5회 재생')
 
     left, bottom, width, height, ax, ay = SPRITE[action][frame]
 
