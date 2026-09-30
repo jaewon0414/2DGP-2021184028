@@ -105,6 +105,7 @@ while running:
     if frame == 0:
         loop += 1
         if loop == 5:
+            delay(1.0)  # 마지막 프레임이 화면에 남은 채로 1초 정지
             loop = 0
             action = (action + 1) % len(SPRITE)
 
