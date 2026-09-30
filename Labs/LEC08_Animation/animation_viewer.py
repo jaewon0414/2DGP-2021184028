@@ -84,6 +84,16 @@ def handle_events():
             running = False
 
 
+def draw_hero(action, frame):
+    left, bottom, width, height, ax, ay = SPRITE[action][frame]
+
+    # 기준점(ax, ay)이 (GROUND_X, GROUND_Y)에 오도록 프레임 중심 위치 계산
+    x = GROUND_X + (width / 2 - ax) * SCALE
+    y = GROUND_Y + (height / 2 - ay) * SCALE
+
+    hero.clip_draw(left, bottom, width, height, x, y, width * SCALE, height * SCALE)
+
+
 open_canvas(WIDTH, HEIGHT)
 hide_lattice()  # 배경 격자 숨기기
 
@@ -101,15 +111,9 @@ while running:
     if frame == 0 and loop == 0:  # 새 action 시작
         print(f'[{ACTION_NAMES[action]}] {len(SPRITE[action])}프레임 x {REPEAT_COUNT}회 재생')
 
-    left, bottom, width, height, ax, ay = SPRITE[action][frame]
-
-    # 기준점(ax, ay)이 (GROUND_X, GROUND_Y)에 오도록 프레임 중심 위치 계산
-    x = GROUND_X + (width / 2 - ax) * SCALE
-    y = GROUND_Y + (height / 2 - ay) * SCALE
-
     clear_canvas()
     grass.draw(WIDTH // 2, GROUND_Y - grass.h // 2 + 10)  # 발 밑에 잔디 바닥
-    hero.clip_draw(left, bottom, width, height, x, y, width * SCALE, height * SCALE)
+    draw_hero(action, frame)
     update_canvas()
 
     frame_time = FRAME_TIME[action]  # 방금 그린 프레임의 action 기준으로 표시 시간 결정
