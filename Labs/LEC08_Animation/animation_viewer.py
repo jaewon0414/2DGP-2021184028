@@ -2,6 +2,17 @@ from pico2d import *
 
 WIDTH, HEIGHT = 800, 600
 
+# 프레임: (left, bottom, width, height) - pico2d 이미지 좌표 (왼쪽 아래가 원점)
+IDLE = (
+    (4, 209, 19, 44),
+    (27, 209, 19, 43),
+    (50, 209, 19, 43),
+    (73, 209, 19, 44),
+)
+
+# Sprite -> Action들의 tuple -> Frame들의 tuple
+SPRITE = (IDLE,)
+
 open_canvas(WIDTH, HEIGHT)
 
 hero = load_image('hero_sheet.png')
