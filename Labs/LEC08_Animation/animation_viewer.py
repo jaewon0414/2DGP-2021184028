@@ -1,3 +1,14 @@
+"""
+Drill #8 애니메이션 뷰어 (animation_viewer.py)
+
+스프라이트 시트(hero_sheet.png)의 캐릭터 애니메이션 5종(Idle, Walk, Run, Jump, Attack)을
+화면 중앙에서 차례로 재생한다.
+- 각 action을 5회 반복한 뒤 1초 정지하고 다음 action으로 넘어가며, 모든 action을 무한 반복
+- 캐릭터 키가 화면 높이의 절반 이상이 되도록 확대 출력
+- 프레임마다 크기가 다른 스프라이트 시트 지원: 프레임별 기준점(ax, ay)으로 위치를 맞춰 흔들림 없음
+- action마다 프레임 수가 다른 경우 지원: 현재 action의 프레임 수(len)로 순환
+- ESC 또는 창 닫기로 종료
+"""
 import math
 
 from pico2d import *
@@ -74,7 +85,7 @@ GROUND_X = WIDTH // 2
 GROUND_Y = HEIGHT // 2 - CHARACTER_HEIGHT * SCALE // 2
 
 
-def handle_events():
+def handle_events():  # 창 닫기, ESC 입력 시 종료
     global running
     events = get_events()
     for event in events:
@@ -84,7 +95,7 @@ def handle_events():
             running = False
 
 
-def draw_hero(action, frame):
+def draw_hero(action, frame):  # action의 frame번째 프레임을 확대해서 그림
     left, bottom, width, height, ax, ay = SPRITE[action][frame]
 
     # 기준점(ax, ay)이 (GROUND_X, GROUND_Y)에 오도록 프레임 중심 위치 계산
@@ -101,9 +112,9 @@ grass = load_image('grass.png')
 hero = load_image('hero_sheet.png')
 
 running = True
-action = 0
-frame = 0
-loop = 0
+action = 0  # 현재 재생 중인 action 번호 (SPRITE의 인덱스)
+frame = 0   # 현재 action 안에서의 프레임 번호
+loop = 0    # 현재 action을 반복한 횟수
 
 while running:
     handle_events()
