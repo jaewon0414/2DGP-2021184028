@@ -1,7 +1,8 @@
+import math
+
 from pico2d import *
 
 WIDTH, HEIGHT = 800, 600
-SCALE = 4
 
 # 프레임: (left, bottom, width, height) - pico2d 이미지 좌표 (왼쪽 아래가 원점)
 IDLE = (
@@ -13,6 +14,10 @@ IDLE = (
 
 # Sprite -> Action들의 tuple -> Frame들의 tuple
 SPRITE = (IDLE,)
+
+# 서 있는 캐릭터의 키가 화면 높이의 절반 이상이 되도록 정수 배율 계산
+CHARACTER_HEIGHT = max(frame[3] for frame in IDLE)
+SCALE = math.ceil((HEIGHT / 2) / CHARACTER_HEIGHT)
 
 
 def handle_events():
