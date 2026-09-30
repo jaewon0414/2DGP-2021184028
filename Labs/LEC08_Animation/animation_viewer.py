@@ -81,7 +81,9 @@ def handle_events():
 
 
 open_canvas(WIDTH, HEIGHT)
+hide_lattice()  # 배경 격자 숨기기
 
+grass = load_image('grass.png')
 hero = load_image('hero_sheet.png')
 
 running = True
@@ -99,6 +101,7 @@ while running:
     y = GROUND_Y + (height / 2 - ay) * SCALE
 
     clear_canvas()
+    grass.draw(WIDTH // 2, GROUND_Y - grass.h // 2 + 10)  # 발 밑에 잔디 바닥
     hero.clip_draw(left, bottom, width, height, x, y, width * SCALE, height * SCALE)
     update_canvas()
 
