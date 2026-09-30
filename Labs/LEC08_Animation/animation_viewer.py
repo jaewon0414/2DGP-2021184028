@@ -4,7 +4,7 @@ Drill #8 애니메이션 뷰어 (animation_viewer.py)
 스프라이트 시트(hero_sheet.png)의 캐릭터 애니메이션 5종(Idle, Walk, Run, Jump, Attack)을
 화면 중앙에서 차례로 재생한다.
 - 각 action을 5회 반복한 뒤 1초 정지하고 다음 action으로 넘어가며, 모든 action을 무한 반복
-- 캐릭터 키가 화면 높이의 절반 이상이 되도록 확대 출력
+- 모든 프레임에서 캐릭터가 화면 높이의 절반 이상이 되도록 확대 출력
 - 프레임마다 크기가 다른 스프라이트 시트 지원: 프레임별 기준점(ax, ay)으로 위치를 맞춰 흔들림 없음
 - action마다 프레임 수가 다른 경우 지원: 현재 action의 프레임 수(len)로 순환
 - ESC 또는 창 닫기로 종료
@@ -76,9 +76,12 @@ ACTION_NAMES = ('Idle', 'Walk', 'Run', 'Jump', 'Attack')
 #   Idle: 느린 호흡 / Walk: 보통 걸음 / Run: 빠른 발놀림 / Jump: 체공감 / Attack: 빠르고 날카롭게
 FRAME_TIME = (0.2, 0.12, 0.07, 0.1, 0.08)
 
-# 서 있는 캐릭터의 키가 화면 높이의 절반 이상이 되도록 정수 배율 계산
-CHARACTER_HEIGHT = max(frame[3] for frame in IDLE)
-SCALE = math.ceil((HEIGHT / 2) / CHARACTER_HEIGHT)
+# 몸을 숙인 프레임까지 모든 프레임이 화면 높이의 절반 이상이 되도록
+# 가장 작은 프레임 높이를 기준으로 정수 배율 계산
+MIN_FRAME_HEIGHT = min(frame[3] for frames in SPRITE for frame in frames)
+SCALE = math.ceil((HEIGHT / 2) / MIN_FRAME_HEIGHT)
+
+CHARACTER_HEIGHT = max(frame[3] for frame in IDLE)  # 서 있는 캐릭터의 키
 
 # 화면에서 캐릭터 발 밑이 놓일 위치 - 서 있는 캐릭터가 화면 중앙에 오도록 설정
 GROUND_X = WIDTH // 2
