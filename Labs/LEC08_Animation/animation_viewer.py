@@ -57,6 +57,10 @@ ATTACK = (
 # Sprite -> Action들의 tuple -> Frame들의 tuple
 SPRITE = (IDLE, WALK, RUN, JUMP, ATTACK)
 
+# action별 프레임 시간(초) - 동작 성격에 맞게 자연스러운 속도로 조절
+#   Idle: 느린 호흡 / Walk: 보통 걸음 / Run: 빠른 발놀림 / Jump: 체공감 / Attack: 빠르고 날카롭게
+FRAME_TIME = (0.2, 0.12, 0.07, 0.1, 0.08)
+
 # 서 있는 캐릭터의 키가 화면 높이의 절반 이상이 되도록 정수 배율 계산
 CHARACTER_HEIGHT = max(frame[3] for frame in IDLE)
 SCALE = math.ceil((HEIGHT / 2) / CHARACTER_HEIGHT)
@@ -98,6 +102,8 @@ while running:
     hero.clip_draw(left, bottom, width, height, x, y, width * SCALE, height * SCALE)
     update_canvas()
 
+    frame_time = FRAME_TIME[action]  # 방금 그린 프레임의 action 기준으로 표시 시간 결정
+
     # action마다 프레임 수가 다르므로 현재 action의 프레임 수로 순환
     frame = (frame + 1) % len(SPRITE[action])
 
@@ -109,6 +115,6 @@ while running:
             loop = 0
             action = (action + 1) % len(SPRITE)
 
-    delay(0.1)
+    delay(frame_time)
 
 close_canvas()
