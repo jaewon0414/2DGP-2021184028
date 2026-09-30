@@ -1,6 +1,7 @@
 from pico2d import *
 
 WIDTH, HEIGHT = 800, 600
+SCALE = 4
 
 # 프레임: (left, bottom, width, height) - pico2d 이미지 좌표 (왼쪽 아래가 원점)
 IDLE = (
@@ -38,7 +39,8 @@ while running:
     left, bottom, width, height = SPRITE[action][frame]
 
     clear_canvas()
-    hero.clip_draw(left, bottom, width, height, WIDTH // 2, HEIGHT // 2)
+    hero.clip_draw(left, bottom, width, height,
+                   WIDTH // 2, HEIGHT // 2, width * SCALE, height * SCALE)
     update_canvas()
 
     frame = (frame + 1) % 4
