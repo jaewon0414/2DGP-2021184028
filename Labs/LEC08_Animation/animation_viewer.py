@@ -4,6 +4,9 @@ from pico2d import *
 
 WIDTH, HEIGHT = 800, 600
 
+REPEAT_COUNT = 5   # action 하나를 반복 재생하는 횟수
+PAUSE_TIME = 1.0   # 반복이 끝난 뒤 정지 시간(초)
+
 # 프레임: (left, bottom, width, height, ax, ay)
 #   left, bottom, width, height : 시트에서 잘라낼 영역 - pico2d 이미지 좌표 (왼쪽 아래가 원점)
 #   ax, ay : 프레임 왼쪽 아래 모서리에서 캐릭터 발 밑(바닥 기준점)까지의 거리
@@ -96,7 +99,7 @@ while running:
     handle_events()
 
     if frame == 0 and loop == 0:  # 새 action 시작
-        print(f'[{ACTION_NAMES[action]}] {len(SPRITE[action])}프레임 x 5회 재생')
+        print(f'[{ACTION_NAMES[action]}] {len(SPRITE[action])}프레임 x {REPEAT_COUNT}회 재생')
 
     left, bottom, width, height, ax, ay = SPRITE[action][frame]
 
@@ -114,11 +117,11 @@ while running:
     # action마다 프레임 수가 다르므로 현재 action의 프레임 수로 순환
     frame = (frame + 1) % len(SPRITE[action])
 
-    # 한 바퀴를 다 돌면 반복 횟수 증가, 5회 반복하면 다음 action으로 (마지막 다음은 처음으로)
+    # 한 바퀴를 다 돌면 반복 횟수 증가, REPEAT_COUNT회 반복하면 다음 action으로 (마지막 다음은 처음으로)
     if frame == 0:
         loop += 1
-        if loop == 5:
-            delay(1.0)  # 마지막 프레임이 화면에 남은 채로 1초 정지
+        if loop == REPEAT_COUNT:
+            delay(PAUSE_TIME)  # 마지막 프레임이 화면에 남은 채로 정지
             loop = 0
             action = (action + 1) % len(SPRITE)
 
