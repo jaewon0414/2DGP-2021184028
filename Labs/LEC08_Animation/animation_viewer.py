@@ -41,6 +41,7 @@ while running:
     hero.clip_draw(left, bottom, width, height, WIDTH // 2, HEIGHT // 2)
     update_canvas()
 
+    frame = (frame + 1) % 4
     delay(0.1)
 
 close_canvas()
