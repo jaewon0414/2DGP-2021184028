@@ -87,7 +87,8 @@ while running:
                    WIDTH // 2, HEIGHT // 2, width * SCALE, height * SCALE)
     update_canvas()
 
-    frame = (frame + 1) % 4
+    # action마다 프레임 수가 다르므로 현재 action의 프레임 수로 순환
+    frame = (frame + 1) % len(SPRITE[action])
     delay(0.1)
 
 close_canvas()
