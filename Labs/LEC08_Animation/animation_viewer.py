@@ -17,8 +17,13 @@ open_canvas(WIDTH, HEIGHT)
 
 hero = load_image('hero_sheet.png')
 
+action = 0
+frame = 0
+
+left, bottom, width, height = SPRITE[action][frame]
+
 clear_canvas()
-hero.draw(WIDTH // 2, HEIGHT // 2)
+hero.clip_draw(left, bottom, width, height, WIDTH // 2, HEIGHT // 2)
 update_canvas()
 
 delay(1)
