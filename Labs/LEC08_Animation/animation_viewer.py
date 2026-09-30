@@ -32,8 +32,18 @@ RUN = (
     (233, 113, 29, 40),
 )
 
+JUMP = (
+    (4, 65, 21, 40),
+    (29, 65, 22, 44),
+    (55, 65, 23, 42),
+    (82, 65, 26, 41),
+    (112, 65, 27, 44),
+    (143, 65, 25, 40),
+    (172, 65, 19, 44),
+)
+
 # Sprite -> Action들의 tuple -> Frame들의 tuple
-SPRITE = (IDLE, WALK, RUN)
+SPRITE = (IDLE, WALK, RUN, JUMP)
 
 # 서 있는 캐릭터의 키가 화면 높이의 절반 이상이 되도록 정수 배율 계산
 CHARACTER_HEIGHT = max(frame[3] for frame in IDLE)
